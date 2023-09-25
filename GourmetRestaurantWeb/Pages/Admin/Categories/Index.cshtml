@@ -1,0 +1,43 @@
+﻿@page
+@model GourmetRestaurantWeb.Pages.Admin.Categories.IndexModel
+
+<div class="container p-3">
+	<div class="row pt-4">
+		<div class="col-6">
+			<h2 class="text-primary">Category List</h2>
+		</div>
+		<div class="col-6 text-end">
+			<a asp-page="Create" class="btn btn-primary"><i class="bi bi-plus-square"></i> &nbsp; Create New Category</a>
+		</div>
+	</div>
+	<br />
+
+	<table class="table table-striped table-bordered">
+		<thead>
+			<tr>
+				<th style="text-align:center">Category Name</th>
+				<th style="text-align:center">Display Order</th>
+				<th style="text-align:center">Edit / Delete</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach(var obj in Model.Categories)
+			{
+				<tr>
+					<td width="40%" style="text-align:center">@obj.Name</td>
+					<td width="30%" style="text-align:center">@obj.DisplayOrder</td>
+						<td style="justify-content:center">
+							<div class="w-100 btn-group" role="group">
+								@*we need id to edit category*@
+								<a asp-page="Edit" asp-route-id="@obj.Id" class="btn btn-primary mx-2 py-2">
+									<i class="bi bi-pencil-square"></i></a>
+								@*we need id to delete category*@
+								<a asp-page="Delete" asp-route-id="@obj.Id" class="btn btn-danger mx-2 py-2">
+									<i class="bi bi-trash-fill"></i></a>
+							</div>
+						</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</div>
